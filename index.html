@@ -91,34 +91,39 @@
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
       e.preventDefault();
-      let output = document.querySelector('output');
-      let firstNum = document.querySelector('#first-num').value;
-      let secondNum = document.querySelector('#second-num').value;
-      let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      try {
+        let output = document.querySelector('output');
+        let firstNum = document.querySelector('#first-num').value;
+        let secondNum = document.querySelector('#second-num').value;
+        let operator = document.querySelector('#operator').value;
+        if (firstNum == "" || secondNum == "" {
+          throw new SyntaxError("Can't be empty");
+        }
+        if (!typeof firstNum === 'number') {
+          throw new SyntaxError("You must type in a number");
+        }
+        if (!typeof secondNum === 'number') {
+          throw new SyntaxError("You must type in a number");
+        }
+        if (operator == '/' && secondNum == 0) {
+          throw new DivisionError("You can't divide by zero");
+        }
+        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      }
+      catch (err) {
+        console.log('error happened in calculation')
+      } finally {
+        console.log("Calculation complete")
+      }
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
     // Start your code here
     // You may move this JS to another file if you wish
-    try {
-      eval(`${firstNum} ${operator} ${secondNum}`);
-    } catch (err) {
-      console.log('error happened in calculation')
-    } finally {
-      console.log("Calculation complete")
-    }
 
-    if (!typeof firstNum === 'number') {
-      throw new SyntaxError("You must type in a number");
-    }
-    if (!typeof secondNum === 'number') {
-      throw new SyntaxError("You must type in a number");
-    }
-    if (operator == '/' && secondNum == 0) {
-      throw new DivisionError("You can't divide by zero");
-    }
+
+
 
     errorBtns[0].addEventListener('click', () => {
       console.log("Console Log Demo");
