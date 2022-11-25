@@ -102,17 +102,29 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    try {
+      eval(`${firstNum} ${operator} ${secondNum}`);
+    } catch (err) {
+      console.log('error happened in calculation')
+    } finally {
+      console.log("Calculation complete")
+    }
+
+    if (operator == '/' && secondNum == 0) {
+      throw new DivisionError("You can't divide by zero");
+    }
+
     errorBtns[0].addEventListener('click', () => {
-      console.log("log");
+      console.log("Console Log Demo");
     });
     errorBtns[1].addEventListener('click', () => {
-      console.error("error");
+      console.error("Console error Demo");
     });
     errorBtns[2].addEventListener('click', () => {
       console.count();
     });
     errorBtns[3].addEventListener('click', () => {
-      console.warn('warn');
+      console.warn('Console Warning Demo');
     });
     errorBtns[4].addEventListener('click', () => {
       const x = 5;
@@ -152,6 +164,22 @@
         }
       ];
       console.table(people);
+    });
+    errorBtns[11].addEventListener('click', () => {
+      console.time();
+    });
+    errorBtns[12].addEventListener('click', () => {
+      console.timeEnd();
+    });
+    errorBtns[13].addEventListener('click', () => {
+      const first = () => { second(); };
+      const second = () => { third(); };
+      const third = () => { fourth(); };
+      const fourth = () => { console.trace(); };
+      first();
+    });
+    errorBtns[14].addEventListener('click', () => {
+      console.log(lalala);
     });
 
 
