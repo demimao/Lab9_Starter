@@ -110,6 +110,12 @@
       console.log("Calculation complete")
     }
 
+    if (!typeof firstNum === 'number') {
+      throw new SyntaxError("You must type in a number");
+    }
+    if (!typeof secondNum === 'number') {
+      throw new SyntaxError("You must type in a number");
+    }
     if (operator == '/' && secondNum == 0) {
       throw new DivisionError("You can't divide by zero");
     }
