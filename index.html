@@ -193,9 +193,9 @@
       console.log(lalala);
     });
 
-    if (window.onerror) {
-      console.log("Detected error");
-    }
+    window.onerror = (event, source, lineno, colno, error) => {
+      console.log("Error detected");
+    };
 
   </script>
 </body>
